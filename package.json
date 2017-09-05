@@ -1,0 +1,26 @@
+{
+    "name": "react-ssr-starter",
+    "version": "0.0.1",
+    "description": "The kit of react server-side render starter.",
+    "main": "index.js",
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/honpery/react-ssr-starter.git"
+    },
+    "keywords": [],
+    "author": "honpery <honpery@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/honpery/react-ssr-starter/issues"
+    },
+    "homepage": "https://github.com/honpery/react-ssr-starter#readme",
+    "devDependencies": {
+        "@types/react": "^16.0.5",
+        "@types/react-dom": "^15.5.4",
+        "@types/webpack": "^3.0.10",
+        "ts-node": "^3.3.0",
+        "tslint": "^5.7.0",
+        "typescript": "^2.5.2"
+    }
+}
