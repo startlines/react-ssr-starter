@@ -4,6 +4,15 @@
         "tslint:recommended"
     ],
     "jsRules": {},
-    "rules": {},
+    "rules": {
+        "interface-name": ["never-prefix"],
+        "object-literal-sort-keys": [false],
+        "quotemark": ["single", "jsx-double"],
+        "member-access": ["no-public"],
+        "curly": false,
+        "variable-name": ["allow-leading-underscore"],
+        "no-unused-expression": false,
+        "arrow-parens": false
+    },
     "rulesDirectory": []
 }

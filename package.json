@@ -16,11 +16,15 @@
     },
     "homepage": "https://github.com/honpery/react-ssr-starter#readme",
     "devDependencies": {
+        "@types/isomorphic-fetch": "^0.0.34",
         "@types/react": "^16.0.5",
         "@types/react-dom": "^15.5.4",
         "@types/webpack": "^3.0.10",
         "ts-node": "^3.3.0",
         "tslint": "^5.7.0",
         "typescript": "^2.5.2"
+    },
+    "dependencies": {
+        "isomorphic-fetch": "^2.2.1"
     }
 }
