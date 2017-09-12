@@ -3,13 +3,17 @@
         "target": "es5",
         "module": "commonjs",
         "lib": [
-            "esnext"
+            "esnext",
+            "dom"
         ],
         "typeRoots": [
             "node_modules/@types"
         ],
         "experimentalDecorators": true,
-        "jsx": "preserve",
+        "jsx": "react",
         "outDir": "dist"
-    }
+    },
+    "exclude": [
+        "node_modules"
+    ]
 }

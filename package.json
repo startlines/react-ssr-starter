@@ -3,7 +3,11 @@
     "version": "0.0.1",
     "description": "The kit of react server-side render starter.",
     "main": "index.js",
-    "scripts": {},
+    "private": true,
+    "scripts": {
+        "server": "./node_modules/.bin/ts-node ./src/server",
+        "test": "./node_modules/.bin/mocha -r ./node_modules/ts-node/register test/**/*.ts"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/honpery/react-ssr-starter.git"
@@ -16,15 +20,29 @@
     },
     "homepage": "https://github.com/honpery/react-ssr-starter#readme",
     "devDependencies": {
+        "@types/chai": "^4.0.4",
         "@types/isomorphic-fetch": "^0.0.34",
+        "@types/koa": "^2.0.39",
+        "@types/koa-views": "^2.0.2",
+        "@types/mocha": "^2.2.43",
         "@types/react": "^16.0.5",
         "@types/react-dom": "^15.5.4",
+        "@types/react-router": "^4.0.15",
         "@types/webpack": "^3.0.10",
+        "@types/webpack-env": "^1.13.1",
+        "chai": "^4.1.2",
+        "mocha": "^3.5.3",
         "ts-node": "^3.3.0",
         "tslint": "^5.7.0",
         "typescript": "^2.5.2"
     },
     "dependencies": {
-        "isomorphic-fetch": "^2.2.1"
+        "ejs": "^2.5.7",
+        "isomorphic-fetch": "^2.2.1",
+        "koa": "^2.3.0",
+        "koa-views": "^6.0.2",
+        "react": "^15.6.1",
+        "react-dom": "^15.6.1",
+        "react-router": "^4.2.0"
     }
 }

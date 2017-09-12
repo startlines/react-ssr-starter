@@ -1,3 +1,9 @@
 {
-    "tslint.autoFixOnSave": true
+    "tslint.autoFixOnSave": true,
+    "emmet.includeLanguages": {
+        "javascript": "jsx",
+        "typescript": "jsx",
+        "tyepscriptreact": "jsx"
+    },
+    "emmet.triggerExpansionOnTab": true
 }
