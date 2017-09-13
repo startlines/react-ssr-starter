@@ -1,4 +1,4 @@
-# react-ssr-starter  [![Build Status](https://travis-ci.org/honpery/react-ssr-starter.svg?branch=master)](https://travis-ci.org/honpery/react-ssr-starter)
+# react-ssr-starter  [![Build Status](https://travis-ci.org/startlines/react-ssr-starter.svg?branch=master)](https://travis-ci.org/startlines/react-ssr-starter)
 
 > React服务器端渲染(ssr)脚手架。
 

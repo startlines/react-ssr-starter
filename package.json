@@ -11,15 +11,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/honpery/react-ssr-starter.git"
+        "url": "git+https://github.com/startlines/react-ssr-starter.git"
     },
     "keywords": [],
     "author": "honpery <honpery@gmail.com>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/honpery/react-ssr-starter/issues"
+        "url": "https://github.com/startlines/react-ssr-starter/issues"
     },
-    "homepage": "https://github.com/honpery/react-ssr-starter#readme",
+    "homepage": "https://github.com/startlines/react-ssr-starter#readme",
     "devDependencies": {
         "@types/chai": "^4.0.4",
         "@types/extract-text-webpack-plugin": "^2.1.0",
