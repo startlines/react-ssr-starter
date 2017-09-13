@@ -1,7 +1,4 @@
-# react-ssr-starter
-[![Build Status](https://travis-ci.org/honpery/react-ssr-starter.svg?branch=master)](https://travis-ci.org/honpery/react-ssr-starter)
-
-----
+# react-ssr-starter  [![Build Status](https://travis-ci.org/honpery/react-ssr-starter.svg?branch=master)](https://travis-ci.org/honpery/react-ssr-starter)
 
 > React服务器端渲染(ssr)脚手架。
 
@@ -10,6 +7,15 @@
 git clone https://www.github.com/honpery/react-ssr-starter.git [your project name]
 cd [your project name] && yarn
 ```
+
+## 技术选型
+- [x] [TypeScript]()
+- [x] [Webpack]()
+- [x] [React]()
+- [x] [ReactDOM]()
+- [x] [isomorphic-fetch](): 用于http请求。
+- [x] [koa]()
+- [x] [ejs]()
 
 ## 目录结构
 ```

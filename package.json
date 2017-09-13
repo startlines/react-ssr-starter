@@ -6,6 +6,7 @@
     "private": true,
     "scripts": {
         "server": "./node_modules/.bin/ts-node ./src/server",
+        "bundle": "./node_modules/.bin/webpack",
         "test": "./node_modules/.bin/mocha -r ./node_modules/ts-node/register test/**/*.ts"
     },
     "repository": {
@@ -21,6 +22,7 @@
     "homepage": "https://github.com/honpery/react-ssr-starter#readme",
     "devDependencies": {
         "@types/chai": "^4.0.4",
+        "@types/extract-text-webpack-plugin": "^2.1.0",
         "@types/isomorphic-fetch": "^0.0.34",
         "@types/koa": "^2.0.39",
         "@types/koa-views": "^2.0.2",
@@ -30,11 +32,14 @@
         "@types/react-router": "^4.0.15",
         "@types/webpack": "^3.0.10",
         "@types/webpack-env": "^1.13.1",
+        "awesome-typescript-loader": "^3.2.3",
         "chai": "^4.1.2",
+        "extract-text-webpack-plugin": "^3.0.0",
         "mocha": "^3.5.3",
         "ts-node": "^3.3.0",
         "tslint": "^5.7.0",
-        "typescript": "^2.5.2"
+        "typescript": "^2.5.2",
+        "webpack-node-externals": "^1.6.0"
     },
     "dependencies": {
         "ejs": "^2.5.7",

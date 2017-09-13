@@ -12,8 +12,5 @@
         "experimentalDecorators": true,
         "jsx": "react",
         "outDir": "dist"
-    },
-    "exclude": [
-        "node_modules"
-    ]
+    }
 }

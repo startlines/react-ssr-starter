@@ -1,8 +1,16 @@
 import * as React from 'react';
 import { App } from './app';
-import { render } from 'react-dom';
+import * as ReactDOM from 'react-dom';
 
-render(
-    <App />,
-    document.getElementById('root'),
-);
+function render(Comp: any) {
+    ReactDOM.render(
+        <Comp />,
+        document.getElementById('root'),
+    );
+}
+
+render(App);
+
+if (process.env.NODE_ENV === 'dev' && module.hot) {
+    module.hot.accept('./app', () => render(require('./app').App));
+}
