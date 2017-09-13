@@ -1,4 +1,5 @@
-import { Api, ApiConfig, Params, Query } from './types';
+import { Api, Params, Query } from './types';
+import { ApiConfig } from '../../config';
 
 interface UrlOptions {
 

@@ -1,5 +1,5 @@
 import { Http } from '../common';
-import { APIs } from '../config';
+import { APIs } from '../../config';
 
 export class BaseAPI {
     protected http = new Http({

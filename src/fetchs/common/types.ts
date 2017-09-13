@@ -15,15 +15,6 @@ export interface Headers {
     [key: string]: any;
 }
 
-export interface ApiConfig {
-    api: Api;
-    desc: string;
-}
-
-export interface ApiConfigGroup {
-    [server: string]: ApiConfig;
-}
-
 export type Method = 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
 
 export const Methods: {[method in Method]: Method} = {
