@@ -1,21 +1,18 @@
 /**
  * be fetch apis config.
  */
-import { Api } from '../fetchs/common';
+import { } from '../fetchs';
 
-export type Server = string;
+// support backend env name.
+export type Env = 'dev' | 'prod';
 
-export interface ApiConfig {
-    api: Api;
-    desc: string;
-}
+// backend api config.
+// Notes: need register in Servers config.
+export const APIs = {
 
-export type ApiConfigGroup = {
-    [server in Server]: ApiConfig;
-}
+};
 
-export const APIs = {};
-
+// backend server config.
 export const Servers = {
 
 };

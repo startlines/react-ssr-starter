@@ -24,3 +24,14 @@ export const Methods: {[method in Method]: Method} = {
     PUT: 'PUT',
     DELETE: 'DELETE',
 };
+
+export type Server = string;
+
+export interface ApiConfig {
+    api: Api;
+    desc: string;
+}
+
+export type ApiConfigGroup = {
+    [server in Server]: ApiConfig;
+};

@@ -36,3 +36,7 @@ react-ssr-starter
     |- tsconfig.json        # typescript配置文件
     |- .travis.yml          # ci配置文件，请自行替换
 ```
+
+## Q&A
+1. Q: 如何添加新的后端接口
+A: 首先在`src/config/api.ts`中添加接口的配置，之后再`src/fetchs/apis`中添加接口封装层。

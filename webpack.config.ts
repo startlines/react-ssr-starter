@@ -1,6 +1,6 @@
-import * as webpack from 'webpack';
-import * as path from 'path';
 import * as extractTextPlugin from 'extract-text-webpack-plugin';
+import * as path from 'path';
+import * as webpack from 'webpack';
 import * as nodeExternals from 'webpack-node-externals';
 
 const isDev = process.env.NODE_ENV === 'dev';
@@ -25,7 +25,21 @@ const Base: webpack.Configuration = {
             },
             {
                 test: /.scss$/,
-                use: extractTextPlugin.extract(['style-loader', 'css-loader!sass-loader']),
+                use: extractTextPlugin.extract({
+                    fallback: [
+                        {
+                            loader: 'style-loader',
+                        },
+                    ],
+                    use: [
+                        {
+                            loader: 'css-loader',
+                        },
+                        {
+                            loader: 'sass-loader',
+                        },
+                    ],
+                }),
             },
         ],
     },
@@ -56,7 +70,7 @@ export const Client: webpack.Configuration = {
 
     plugins: [
         ...Base.plugins,
-    ]
+    ],
 };
 
 export const Server: webpack.Configuration = {
@@ -69,15 +83,15 @@ export const Server: webpack.Configuration = {
         server: Root('src/server'),
     },
 
-    // externals: nodeExternals(),
-
     output: {
-        ...Base.output,
         path: Root('build'),
         filename: '[name].js',
         chunkFilename: 'chunks/[name].js',
         libraryTarget: 'commonjs2',
+        publicPath: '/assets/',
     },
+
+    externals: /^[a-z\-0-9]+$/,
 };
 
 export default [Client, Server];

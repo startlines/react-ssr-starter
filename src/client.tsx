@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { App } from './app';
 import * as ReactDOM from 'react-dom';
+import { App } from './app';
+
+const root = document.getElementById('root');
 
 function render(Comp: any) {
-    ReactDOM.render(
-        <Comp />,
-        document.getElementById('root'),
-    );
+    ReactDOM.render(<Comp />, root);
 }
 
 render(App);

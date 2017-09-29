@@ -1,22 +1,40 @@
-import * as React from 'react';
 import * as koa from 'koa';
-import { PORT } from './config';
+import * as koaStatic from 'koa-static';
+import * as views from 'koa-views';
+import * as path from 'path';
+import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 import { App } from './app';
-import * as views from 'koa-views';
+import { PORT } from './config';
+import { Log } from './utils';
 
 const app = new koa();
 
-app.use(views(__dirname, {
-    extension: 'ejs',
-}));
+app.use(koaStatic(path.join(__dirname, '../build/public')));
 
 app.use(async ctx => {
-    await ctx.render('index', {
-        root: renderToString(<App />),
-        title: 'todo replace title by router.',
-        initSate: null,
-    });
+    ctx.body = `
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <link rel="stylesheet" href="/assets/style.css"/>
+            <title>demo</title>
+        </head>
+
+        <body>
+            <div id="root">${renderToString(<App />)}</div>
+
+            <script>
+                window.__INITIAL_STATE__ = null;
+            </script>
+        </body>
+
+        </html>
+    `;
 });
 
-app.listen(PORT, () => console.log(`Server running at ${PORT} ports.`));
+app.listen(PORT, () => Log.log(`Server running at ${PORT} ports.`));

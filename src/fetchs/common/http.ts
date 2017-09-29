@@ -1,6 +1,6 @@
 import 'isomorphic-fetch';
-import { Api, Params, Query, Body, Headers, Method, Methods } from './types';
-import { ApiConfig } from '../../config';
+import { Log } from '../../utils';
+import { Api, ApiConfig, Body, Headers, Method, Methods, Params, Query } from './types';
 import { Url } from './url';
 
 export interface HttpOptions {
@@ -24,7 +24,7 @@ export class Http {
     constructor(options: HttpOptions) {
         this._options = options;
         this._url = new Url({
-
+            env: 'dev',
         });
     }
 
@@ -54,7 +54,7 @@ export class Http {
 
         const init: RequestInit = {};
 
-        const req = result.req = new Request(this._url.create(api, params, query), init);
+        const req = result.req = new Request(this._url.get(api, params, query), init);
 
         if (this._options.debug) this._reqLog(req);
 
@@ -66,11 +66,11 @@ export class Http {
     }
 
     private _reqLog(req: Request) {
-        console.log(JSON.stringify(req));
+        Log.log(JSON.stringify(req));
     }
 
     private _resLog(res: Response) {
-        console.log(JSON.stringify(res));
+        Log.log(JSON.stringify(res));
     }
 
 }
