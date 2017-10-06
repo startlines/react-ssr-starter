@@ -1,16 +1,9 @@
 import * as extractTextPlugin from 'extract-text-webpack-plugin';
-import * as path from 'path';
 import * as webpack from 'webpack';
-import * as nodeExternals from 'webpack-node-externals';
-
-const isDev = process.env.NODE_ENV === 'dev';
-
-function Root(...paths: string[]) {
-    return path.join(__dirname, ...paths);
-}
+import { Env, Path } from './helper';
 
 const Base: webpack.Configuration = {
-    context: Root(),
+    context: Path.root(),
 
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.jsx'],
@@ -44,7 +37,7 @@ const Base: webpack.Configuration = {
         ],
     },
 
-    devtool: isDev ? 'cheap-module-source-map' : 'source-map',
+    devtool: Env.isDev ? 'cheap-module-source-map' : 'source-map',
 
     plugins: [
         new extractTextPlugin('style.css'),
@@ -58,18 +51,21 @@ export const Client: webpack.Configuration = {
     name: 'client',
 
     entry: {
-        client: Root('src/client'),
+        client: Path.root('src', 'client'),
     },
 
     output: {
-        path: Root('build/public/assets'),
+        path: Path.root('build', 'public', 'assets'),
         publicPath: '/assets/',
-        filename: isDev ? '[name].js' : '[name].[hash:8].js',
-        chunkFilename: isDev ? '[name].chunk.js' : '[name].[chunkhash:8].chunk.js',
+        filename: Env.isDev ? '[name].js' : '[name].[hash:8].js',
+        chunkFilename: Env.isDev ? '[name].chunk.js' : '[name].[chunkhash:8].chunk.js',
     },
 
     plugins: [
         ...Base.plugins,
+
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin(),
     ],
 };
 
@@ -80,11 +76,11 @@ export const Server: webpack.Configuration = {
     name: 'server',
 
     entry: {
-        server: Root('src/server'),
+        server: Path.root('src', 'server'),
     },
 
     output: {
-        path: Root('build'),
+        path: Path.root('build'),
         filename: '[name].js',
         chunkFilename: 'chunks/[name].js',
         libraryTarget: 'commonjs2',

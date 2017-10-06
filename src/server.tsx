@@ -1,40 +1,19 @@
 import * as koa from 'koa';
-import * as koaStatic from 'koa-static';
-import * as views from 'koa-views';
 import * as path from 'path';
-import * as React from 'react';
-import { renderToString } from 'react-dom/server';
-import { App } from './app';
+import * as webpack from 'webpack';
+import { Env, Log } from '../helper';
+import { Server } from '../webpack.config';
 import { PORT } from './config';
-import { Log } from './utils';
+import { router, WebpackDev, WebpackHot } from './middlewares';
 
 const app = new koa();
 
-app.use(koaStatic(path.join(__dirname, '../build/public')));
+if (Env.isDev) {
+    const compiler = webpack(Server);
+    app.use(WebpackDev(compiler));
+    app.use(WebpackHot(compiler));
+}
 
-app.use(async ctx => {
-    ctx.body = `
-        <!DOCTYPE html>
-        <html lang="en">
-
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <link rel="stylesheet" href="/assets/style.css"/>
-            <title>demo</title>
-        </head>
-
-        <body>
-            <div id="root">${renderToString(<App />)}</div>
-
-            <script>
-                window.__INITIAL_STATE__ = null;
-            </script>
-        </body>
-
-        </html>
-    `;
-});
+app.use(router.routes());
 
 app.listen(PORT, () => Log.log(`Server running at ${PORT} ports.`));

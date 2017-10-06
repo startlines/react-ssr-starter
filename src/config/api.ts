@@ -1,7 +1,7 @@
 /**
  * be fetch apis config.
  */
-import { } from '../fetchs';
+import { ApiConfig } from '../fetchs/common/types';
 
 // support backend env name.
 export type Env = 'dev' | 'prod';

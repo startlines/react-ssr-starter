@@ -5,9 +5,9 @@
     "main": "index.js",
     "private": true,
     "scripts": {
-        "server": "./node_modules/.bin/ts-node ./src/server",
-        "bundle": "./node_modules/.bin/webpack",
-        "test": "./node_modules/.bin/mocha -r ./node_modules/ts-node/register test/**/*.ts"
+        "server": "NODE_ENV=dev ts-node ./src/server",
+        "bundle": "NODE_ENV=production webpack",
+        "test": "mocha -r ./node_modules/ts-node/register test/**/*.ts"
     },
     "repository": {
         "type": "git",
@@ -25,14 +25,15 @@
         "@types/extract-text-webpack-plugin": "^2.1.0",
         "@types/isomorphic-fetch": "^0.0.34",
         "@types/koa": "^2.0.39",
-        "@types/koa-static": "^3.0.1",
-        "@types/koa-views": "^2.0.2",
+        "@types/koa-router": "^7.0.23",
         "@types/mocha": "^2.2.43",
         "@types/react": "^16.0.5",
         "@types/react-dom": "^15.5.4",
         "@types/react-router": "^4.0.15",
         "@types/webpack": "^3.0.10",
+        "@types/webpack-dev-middleware": "^1.9.3",
         "@types/webpack-env": "^1.13.1",
+        "@types/webpack-hot-middleware": "^2.16.0",
         "awesome-typescript-loader": "^3.2.3",
         "chai": "^4.1.2",
         "css-loader": "^0.28.7",
@@ -45,14 +46,13 @@
         "tslint": "^5.7.0",
         "typescript": "^2.5.2",
         "webpack": "^3.5.6",
-        "webpack-node-externals": "^1.6.0"
+        "webpack-dev-middleware": "^1.12.0",
+        "webpack-hot-middleware": "^2.19.1"
     },
     "dependencies": {
-        "ejs": "^2.5.7",
         "isomorphic-fetch": "^2.2.1",
         "koa": "^2.3.0",
-        "koa-static": "^4.0.1",
-        "koa-views": "^6.0.2",
+        "koa-router": "^7.2.1",
         "react": "^15.6.1",
         "react-dom": "^15.6.1",
         "react-router": "^4.2.0"
