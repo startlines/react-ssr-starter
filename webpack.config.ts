@@ -2,6 +2,10 @@ import * as extractTextPlugin from 'extract-text-webpack-plugin';
 import * as webpack from 'webpack';
 import { Env, Path } from './helper';
 
+const publicPath = Path.root('build', 'public');
+
+const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
+
 const Base: webpack.Configuration = {
     context: Path.root(),
 
@@ -51,12 +55,12 @@ export const Client: webpack.Configuration = {
     name: 'client',
 
     entry: {
-        client: Path.root('src', 'client'),
+        client: [Path.root('src', 'client'), hotMiddlewareScript],
     },
 
     output: {
-        path: Path.root('build', 'public', 'assets'),
-        publicPath: '/assets/',
+        path: Path.root('build', 'public'),
+        publicPath,
         filename: Env.isDev ? '[name].js' : '[name].[hash:8].js',
         chunkFilename: Env.isDev ? '[name].chunk.js' : '[name].[chunkhash:8].chunk.js',
     },
@@ -76,7 +80,7 @@ export const Server: webpack.Configuration = {
     name: 'server',
 
     entry: {
-        server: Path.root('src', 'server'),
+        server: [Path.root('src', 'server'), hotMiddlewareScript],
     },
 
     output: {
@@ -84,7 +88,7 @@ export const Server: webpack.Configuration = {
         filename: '[name].js',
         chunkFilename: 'chunks/[name].js',
         libraryTarget: 'commonjs2',
-        publicPath: '/assets/',
+        publicPath,
     },
 
     externals: /^[a-z\-0-9]+$/,

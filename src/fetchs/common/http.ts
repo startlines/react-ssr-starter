@@ -1,6 +1,6 @@
 import 'isomorphic-fetch';
 import { Log } from '../../../helper';
-import { Api, ApiConfig, Body, Headers, Method, Methods, Params, Query } from './types';
+import { Api, Body, Headers, Method, Methods, Params, Query } from './types';
 import { Url } from './url';
 
 export interface HttpOptions {
@@ -8,7 +8,7 @@ export interface HttpOptions {
 }
 
 export interface FetchOptions {
-    api: ApiConfig;
+    api: Api;
     params?: Params;
     query?: Query;
     body?: Body;

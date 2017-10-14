@@ -1,13 +1,8 @@
 /**
  * fe router config.
  */
-interface Route {
-    path: string;
-    name?: string;
-    title?: string;
-    children?: Route[];
-}
+import { RouterConfig } from '../routes/types';
 
-export const Router: Route[] = [
+export const Router: RouterConfig = [
 
 ];

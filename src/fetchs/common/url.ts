@@ -1,5 +1,5 @@
 import { Env } from '../../config';
-import { Api, ApiConfig, Params, Query } from './types';
+import { Api, Params, Query } from './types';
 
 interface UrlOptions {
     env: Env;
@@ -11,7 +11,7 @@ export class Url {
 
     }
 
-    get(api: ApiConfig, params: Params, query: Query): Api {
+    get(api: Api, params: Params, query: Query): string {
         return '';
     }
 }

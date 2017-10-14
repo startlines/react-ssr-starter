@@ -2,15 +2,15 @@ import * as koa from 'koa';
 import * as path from 'path';
 import * as webpack from 'webpack';
 import { Env, Log } from '../helper';
-import { Server } from '../webpack.config';
+import WebpackConfig from '../webpack.config';
 import { PORT } from './config';
 import { router, WebpackDev, WebpackHot } from './middlewares';
 
 const app = new koa();
 
 if (Env.isDev) {
-    const compiler = webpack(Server);
-    app.use(WebpackDev(compiler));
+    const compiler: any = webpack(WebpackConfig);
+    app.use(WebpackDev(compiler, { publicPath: WebpackConfig[0].output.publicPath }));
     app.use(WebpackHot(compiler));
 }
 

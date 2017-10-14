@@ -1,4 +1,6 @@
-export type Api = string;
+import { Env } from '../../config';
+
+export type Path = string;
 
 export type Param = any;
 export type Params = Param[];
@@ -16,7 +18,6 @@ export interface Headers {
 }
 
 export type Method = 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
-
 export const Methods: {[method in Method]: Method} = {
     GET: 'GET',
     POST: 'POST',
@@ -25,13 +26,28 @@ export const Methods: {[method in Method]: Method} = {
     DELETE: 'DELETE',
 };
 
-export type Server = string;
-
-export interface ApiConfig {
-    api: Api;
+export interface Api {
+    api: Path;
     desc: string;
+    headers?: Headers;
+    query?: Query;
+    body?: Body;
+    token?: string;
 }
 
-export type ApiConfigGroup = {
-    [server in Server]: ApiConfig;
-};
+export interface ApiGroup {
+    [group: string]: Api;
+}
+
+export interface ApiConfig {
+    [name: string]: ApiGroup;
+}
+
+export interface ServerConfig {
+    [server: string]: {
+        host: {
+            [env in Env]: string;
+        };
+        apis: Array<Api | ApiGroup>;
+    };
+}

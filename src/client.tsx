@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { App } from './app';
+import { Env } from '../helper';
+import { App } from './pages';
 
 const root = document.getElementById('root');
 
@@ -10,6 +11,6 @@ function render(Comp: any) {
 
 render(App);
 
-if (process.env.NODE_ENV === 'dev' && module.hot) {
+if (Env.isDev && module.hot) {
     module.hot.accept('./app', () => render(require('./app').App));
 }
