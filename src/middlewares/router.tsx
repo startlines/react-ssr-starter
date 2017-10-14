@@ -2,7 +2,7 @@ import * as koa from 'koa';
 import * as koaRouter from 'koa-router';
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
-import { App } from '../app';
+import { App } from '../pages/app';
 
 export const router = new koaRouter();
 

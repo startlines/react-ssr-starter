@@ -1,10 +1,8 @@
 import * as extractTextPlugin from 'extract-text-webpack-plugin';
 import * as webpack from 'webpack';
-import { Env, Path } from './helper';
+import { Env, Path } from './src/helper';
 
 const publicPath = Path.root('build', 'public');
-
-const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
 
 const Base: webpack.Configuration = {
     context: Path.root(),
@@ -19,6 +17,7 @@ const Base: webpack.Configuration = {
             {
                 test: /.tsx?$/,
                 use: ['awesome-typescript-loader'],
+                exclude: ['node_modules'],
             },
             {
                 test: /.scss$/,
@@ -55,7 +54,7 @@ export const Client: webpack.Configuration = {
     name: 'client',
 
     entry: {
-        client: [Path.root('src', 'client'), hotMiddlewareScript],
+        client: [Path.root('src', 'client')],
     },
 
     output: {
@@ -80,7 +79,7 @@ export const Server: webpack.Configuration = {
     name: 'server',
 
     entry: {
-        server: [Path.root('src', 'server'), hotMiddlewareScript],
+        server: [Path.root('src', 'server')],
     },
 
     output: {

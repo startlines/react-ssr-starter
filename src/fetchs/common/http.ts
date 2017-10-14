@@ -1,5 +1,5 @@
 import 'isomorphic-fetch';
-import { Log } from '../../../helper';
+import { Log } from '../../helper';
 import { Api, Body, Headers, Method, Methods, Params, Query } from './types';
 import { Url } from './url';
 
