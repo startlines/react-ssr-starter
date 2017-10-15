@@ -15,12 +15,14 @@ router.all('*', async ctx => {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <link rel="stylesheet" href="/assets/style.css"/>
+            <link rel="stylesheet" href="/style.css"/>
             <title>demo</title>
         </head>
 
         <body>
             <div id="root">${renderToString(<App />)}</div>
+
+            <script src="/client.js"></script>
 
             <script>
                 window.__INITIAL_STATE__ = null;

@@ -1,9 +1,9 @@
 import * as koa from 'koa';
-import * as path from 'path';
+import * as koaStatic from 'koa-static';
 import * as webpack from 'webpack';
 import WebpackConfig from '../webpack.config';
 import { PORT } from './config';
-import { Env, Log } from './helper';
+import { Env, Log, Path } from './helper';
 import { router, WebpackDev, WebpackHot } from './middlewares';
 
 const app = new koa();
@@ -13,6 +13,9 @@ if (Env.isDev) {
     app.use(WebpackDev(compiler, { publicPath: WebpackConfig[0].output.publicPath }));
     app.use(WebpackHot(compiler));
 }
+
+// static
+app.use(koaStatic(Path.relative('build', 'public')));
 
 app.use(router.routes());
 

@@ -6,11 +6,11 @@ import { App } from './pages';
 const root = document.getElementById('root');
 
 function render(Comp: any) {
-    ReactDOM.render(<Comp />, root);
+    ReactDOM.hydrate(<Comp />, root);
 }
 
 render(App);
 
 if (Env.isDev && module.hot) {
-    module.hot.accept('./app', () => render(require('./app').App));
+    module.hot.accept('./pages/app', () => render(require('./pages/app').App));
 }

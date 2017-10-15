@@ -1,3 +1,4 @@
+import * as cleanPlugin from 'clean-webpack-plugin';
 import * as extractTextPlugin from 'extract-text-webpack-plugin';
 import * as webpack from 'webpack';
 import { Env, Path } from './src/helper';
@@ -44,6 +45,12 @@ const Base: webpack.Configuration = {
 
     plugins: [
         new extractTextPlugin('style.css'),
+
+        new webpack.HotModuleReplacementPlugin(),
+
+        new cleanPlugin([Path.root('build')], {
+            exclude: ['.gitignore'],
+        }),
     ],
 };
 
@@ -60,8 +67,8 @@ export const Client: webpack.Configuration = {
     output: {
         path: Path.root('build', 'public'),
         publicPath,
-        filename: Env.isDev ? '[name].js' : '[name].[hash:8].js',
-        chunkFilename: Env.isDev ? '[name].chunk.js' : '[name].[chunkhash:8].chunk.js',
+        filename: Env.isDev ? '[name].js' : '[name].js',
+        chunkFilename: Env.isDev ? '[name].chunk.js' : '[name].chunk.js',
     },
 
     plugins: [
