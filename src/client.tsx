@@ -6,7 +6,7 @@ import { App } from './pages';
 const root = document.getElementById('root');
 
 function render(Comp: any) {
-    ReactDOM.hydrate(<Comp />, root);
+    ReactDOM.render(<Comp />, root);
 }
 
 render(App);

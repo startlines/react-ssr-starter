@@ -2,19 +2,26 @@
     "compilerOptions": {
         "target": "es5",
         "module": "commonjs",
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "outDir": "dist",
         "lib": [
             "esnext",
             "dom"
         ],
-        "typeRoots": [
-            "node_modules/@types"
-        ],
+        "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "jsx": "react",
-        "outDir": "dist"
+        "removeComments": true,
+        "strict": true,
+        "noImplicitAny": true,
+        "sourceMap": true,
+        "skipLibCheck": true,
+        "declaration": true,
+        "jsx": "react"
     },
     "exclude": [
         "node_modules",
-        "build"
+        "test"
     ]
 }

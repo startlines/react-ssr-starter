@@ -5,5 +5,7 @@
         "typescript": "jsx",
         "tyepscriptreact": "jsx"
     },
-    "emmet.triggerExpansionOnTab": true
+    "emmet.triggerExpansionOnTab": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
 }

@@ -3,7 +3,7 @@ import * as extractTextPlugin from 'extract-text-webpack-plugin';
 import * as webpack from 'webpack';
 import { Env, Path } from './src/helper';
 
-const publicPath = Path.root('build', 'public');
+export const PublicPath = Env.isDev ? '/public/' : 'https://www.cdn.com';
 
 const Base: webpack.Configuration = {
     context: Path.root(),
@@ -66,7 +66,7 @@ export const Client: webpack.Configuration = {
 
     output: {
         path: Path.root('build', 'public'),
-        publicPath,
+        publicPath: PublicPath,
         filename: Env.isDev ? '[name].js' : '[name].js',
         chunkFilename: Env.isDev ? '[name].chunk.js' : '[name].chunk.js',
     },
@@ -94,10 +94,15 @@ export const Server: webpack.Configuration = {
         filename: '[name].js',
         chunkFilename: 'chunks/[name].js',
         libraryTarget: 'commonjs2',
-        publicPath,
+        publicPath: PublicPath,
     },
 
     externals: /^[a-z\-0-9]+$/,
+
+    node: {
+        __dirname: true,
+        __filename: true,
+    },
 };
 
 export default [Client, Server];
