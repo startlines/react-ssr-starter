@@ -1,6 +1,6 @@
-# react-ssr-starter  [![Build Status](https://travis-ci.org/startlines/react-ssr-starter.svg?branch=master)](https://travis-ci.org/startlines/react-ssr-starter)
+# react-ssr-starter  [![Build Status](https://travis-ci.org/startlines/react-ssr-starter.svg?branch=master)](https://travis-ci.org/startlines/react-ssr-starter) [![Greenkeeper badge](https://badges.greenkeeper.io/honpery/react-ssr-starter.svg)](https://greenkeeper.io/)
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/honpery/react-ssr-starter.svg)](https://greenkeeper.io/)
+
 
 > React服务器端渲染(ssr)脚手架。
 
