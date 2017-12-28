@@ -11,6 +11,7 @@ import { App, Html, HtmlProps } from './components';
 import { PORT } from './config';
 import { Env, Log, Path } from './helper';
 import { WebpackDev, WebpackHot } from './middlewares';
+import { Routes } from './router';
 
 const app = new koa();
 

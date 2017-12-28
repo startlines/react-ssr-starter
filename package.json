@@ -6,8 +6,8 @@
     "private": true,
     "scripts": {
         "dev": "NODE_ENV=dev ts-node ./src/server",
-        "bundle": "NODE_ENV=production webpack",
-        "deploy": "sh ./scripts/deploy.sh",
+        "bundle": "rm -r build; NODE_ENV=production webpack; rm -r dist",
+        "prod": "NODE_ENV=production node ./build/server",
         "test": "mocha -r ./node_modules/ts-node/register test/**/*.ts",
         "ncu": "ncu -au && yarn"
     },
@@ -23,9 +23,9 @@
     },
     "homepage": "https://github.com/startlines/react-ssr-starter#readme",
     "devDependencies": {
+        "@types/assets-webpack-plugin": "^3.5.0",
         "@types/chai": "^4.0.10",
         "@types/extract-text-webpack-plugin": "^3.0.0",
-        "@types/isomorphic-fetch": "^0.0.34",
         "@types/koa": "^2.0.43",
         "@types/koa-router": "^7.0.27",
         "@types/koa-static": "^3.0.2",
@@ -38,14 +38,14 @@
         "@types/webpack-dev-middleware": "^1.12.0",
         "@types/webpack-env": "^1.13.3",
         "@types/webpack-hot-middleware": "^2.16.2",
+        "@types/webpack-node-externals": "^1.6.0",
+        "assets-webpack-plugin": "^3.5.1",
         "awesome-typescript-loader": "^3.4.1",
         "chai": "^4.1.2",
-        "clean-webpack-plugin": "^0.1.17",
         "css-loader": "^0.28.7",
         "extract-text-webpack-plugin": "^3.0.2",
         "mocha": "^4.0.1",
         "node-sass": "^4.7.2",
-        "nodemon": "^1.14.3",
         "npm-check-updates": "^2.14.0",
         "sass-loader": "^6.0.6",
         "style-loader": "^0.19.1",
@@ -54,10 +54,10 @@
         "typescript": "^2.6.2",
         "webpack": "^3.10.0",
         "webpack-dev-middleware": "^2.0.3",
-        "webpack-hot-middleware": "^2.21.0"
+        "webpack-hot-middleware": "^2.21.0",
+        "webpack-node-externals": "^1.6.0"
     },
     "dependencies": {
-        "isomorphic-fetch": "^2.2.1",
         "koa": "^2.4.1",
         "koa-router": "^7.3.0",
         "koa-static": "^4.0.2",

@@ -5,6 +5,7 @@ export class App extends React.Component {
         const { children } = this.props;
         return (
             <div className="app-wrap">
+                app
                 {children}
             </div>
         );
