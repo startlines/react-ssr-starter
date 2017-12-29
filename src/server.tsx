@@ -15,24 +15,31 @@ import { Routes } from './router';
 
 const app = new koa();
 
-app.use(koaStatic(Env.isDev ? '.' : Path.root('build', 'public')));
-
 if (Env.isDev) {
     const compiler = webpack(WebpackConfig);
 
     app.use(WebpackDev(compiler, {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        },
         publicPath: PublicPath,
+        watchOptions: {
+            poll: true,
+        },
         serverSideRender: true,
         noInfo: true,
         stats: Server.stats || {},
     }));
 
-    app.use(WebpackHot(compiler));
+    app.use(WebpackHot(compiler, {
+    }));
 }
+
+app.use(koaStatic(Env.isDev ? '.' : Path.root('build', 'public')));
 
 const router = new Router();
 
-router.get('*', ctx => {
+router.get('/', ctx => {
     const { webpackStats } = ctx.state;
     const { assetsByChunkName } = webpackStats.toJson().children.find((item: any) => item.name === Client.name);
 

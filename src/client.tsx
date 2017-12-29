@@ -20,5 +20,7 @@ function render(Appc: any) {
 render(App);
 
 if (Env.isDev && module.hot) {
-    module.hot.accept(appPath, () => render(App));
+    module.hot.accept(appPath, () => {
+        render(App);
+    });
 }

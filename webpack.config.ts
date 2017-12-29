@@ -27,15 +27,6 @@ const Base: webpack.Configuration = {
 
     plugins: [
         new CheckerPlugin(),
-
-        ...(Env.isDev
-            ? [
-                // dev plugins
-                new webpack.HotModuleReplacementPlugin(),
-            ]
-            : [
-                // prod plugins
-            ]),
     ],
 
     stats: {
@@ -51,7 +42,12 @@ export const Client: webpack.Configuration = {
     name: 'client',
 
     entry: {
-        client: [Path.root('src', 'client')],
+        client: [
+            ...(Env.isDev
+                ? ['webpack-hot-middleware/client']
+                : []),
+            Path.root('src', 'client'),
+        ],
     },
 
     output: {
@@ -101,9 +97,11 @@ export const Client: webpack.Configuration = {
 
         ...(Env.isDev
             ? [
-
+                // dev plugins
+                new webpack.HotModuleReplacementPlugin(),
             ]
             : [
+                // production plugins
                 new webpack.optimize.UglifyJsPlugin({}),
             ]),
     ],
@@ -116,7 +114,12 @@ export const Server: webpack.Configuration = {
     name: 'server',
 
     entry: {
-        server: [Path.root('src', 'server')],
+        server: [
+            // ...(Env.isDev
+            //     ? ['webpack-hot-middleware/client']
+            //     : []),
+            Path.root('src', 'server'),
+        ],
     },
 
     output: {

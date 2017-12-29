@@ -5,14 +5,28 @@
     ],
     "jsRules": {},
     "rules": {
-        "interface-name": ["never-prefix"],
-        "object-literal-sort-keys": [false],
-        "quotemark": ["single", "jsx-double"],
-        "member-access": ["no-public"],
+        "quotemark": [
+            true,
+            "single",
+            "jsx-double"
+        ],
+        "object-literal-sort-keys": false,
+        "arrow-parens": false,
+        "one-variable-per-declaration": false,
         "curly": false,
-        "variable-name": ["allow-leading-underscore"],
-        "no-unused-expression": false,
-        "arrow-parens": false
+        "class-name": false,
+        "new-parens": false,
+        "forin": false,
+        "variable-name": false,
+        "max-classes-per-file": false,
+        "member-access": [
+            true,
+            "no-public"
+        ],
+        "interface-name": [
+            true,
+            "never-prefix"
+        ]
     },
     "rulesDirectory": []
 }
