@@ -44,7 +44,7 @@ export const Client: webpack.Configuration = {
     entry: {
         client: [
             ...(Env.isDev
-                ? ['webpack-hot-middleware/client']
+                ? ['react-hot-loader/patch', 'webpack-hot-middleware/client']
                 : []),
             Path.root('src', 'client'),
         ],
@@ -115,9 +115,6 @@ export const Server: webpack.Configuration = {
 
     entry: {
         server: [
-            // ...(Env.isDev
-            //     ? ['webpack-hot-middleware/client']
-            //     : []),
             Path.root('src', 'server'),
         ],
     },

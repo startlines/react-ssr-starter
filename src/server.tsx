@@ -16,30 +16,24 @@ import { Routes } from './router';
 const app = new koa();
 
 if (Env.isDev) {
-    const compiler = webpack(WebpackConfig);
+    const compiler: any = webpack(WebpackConfig);
 
     app.use(WebpackDev(compiler, {
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-        },
+        headers: { 'Access-Control-Allow-Origin': '*' },
         publicPath: PublicPath,
-        watchOptions: {
-            poll: true,
-        },
         serverSideRender: true,
         noInfo: true,
         stats: Server.stats || {},
     }));
 
-    app.use(WebpackHot(compiler, {
-    }));
+    app.use(WebpackHot(compiler.compilers.find((com: webpack.Compiler) => com.name === Client.name), {}));
 }
 
 app.use(koaStatic(Env.isDev ? '.' : Path.root('build', 'public')));
 
 const router = new Router();
 
-router.get('/', ctx => {
+router.get('*', ctx => {
     const { webpackStats } = ctx.state;
     const { assetsByChunkName } = webpackStats.toJson().children.find((item: any) => item.name === Client.name);
 
