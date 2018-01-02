@@ -4,6 +4,7 @@ import * as Router from 'koa-router';
 import * as koaStatic from 'koa-static';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/server';
+import { renderRoutes } from 'react-router-config';
 import { StaticRouter } from 'react-router-dom';
 import * as webpack from 'webpack';
 import { Client, default as WebpackConfig, PublicPath, Server } from '../webpack.config';
@@ -16,7 +17,7 @@ import { Routes } from './router';
 const app = new koa();
 
 if (Env.isDev) {
-    const compiler: any = webpack(WebpackConfig);
+    const compiler = webpack(WebpackConfig);
 
     app.use(WebpackDev(compiler, {
         headers: { 'Access-Control-Allow-Origin': '*' },
@@ -26,7 +27,7 @@ if (Env.isDev) {
         stats: Server.stats || {},
     }));
 
-    app.use(WebpackHot(compiler.compilers.find((com: webpack.Compiler) => com.name === Client.name), {}));
+    app.use(WebpackHot((compiler as any).compilers.find((com: webpack.Compiler) => com.name === Client.name), {}));
 }
 
 app.use(koaStatic(Env.isDev ? '.' : Path.root('build', 'public')));
@@ -46,11 +47,9 @@ router.get('*', ctx => {
 
     const html = ReactDOM.renderToStaticMarkup(
         <Html {...props}>
-            <App>
-                <StaticRouter location={ctx.url} context={{}}>
-                    {Routes}
-                </StaticRouter>
-            </App>
+            <StaticRouter location={ctx.url} context={{}}>
+                {renderRoutes(Routes)}
+            </StaticRouter>
         </Html>,
     );
     ctx.body = `<!DOCTYPE html>${html}`;
@@ -58,11 +57,4 @@ router.get('*', ctx => {
 
 app.use(router.routes());
 
-if (module.hot) {
-    // app.hot = module.hot;
-    module.hot.accept('./components/app', () => Log.log(`HMR reloading...`));
-}
-
-if (!module.hot) {
-    app.listen(PORT, () => Log.log(`Server running at ${PORT} ports.`));
-}
+app.listen(PORT, () => Log.log(`Server running at ${PORT} ports.`));

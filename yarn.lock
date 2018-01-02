@@ -64,7 +64,7 @@
   dependencies:
     "@types/webpack" "*"
 
-"@types/history@*":
+"@types/history@*", "@types/history@^4.6.2":
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.6.2.tgz#12cfaba693ba20f114ed5765467ff25fdf67ddb0"
 
@@ -130,6 +130,14 @@
   dependencies:
     "@types/node" "*"
     "@types/react" "*"
+
+"@types/react-router-config@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@types/react-router-config/-/react-router-config-1.0.5.tgz#b6a4106ec1ab318db69dec0ddcba143c753effd1"
+  dependencies:
+    "@types/history" "*"
+    "@types/react" "*"
+    "@types/react-router" "*"
 
 "@types/react-router-dom@^4.2.3":
   version "4.2.3"
@@ -4620,6 +4628,10 @@ react-proxy@^3.0.0-alpha.0:
   resolved "https://registry.yarnpkg.com/react-proxy/-/react-proxy-3.0.0-alpha.1.tgz#4400426bcfa80caa6724c7755695315209fa4b07"
   dependencies:
     lodash "^4.6.1"
+
+react-router-config@^1.0.0-beta.4:
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/react-router-config/-/react-router-config-1.0.0-beta.4.tgz#d202496dd0eabdf06cf24eb0793031f6891eef01"
 
 react-router-dom@^4.2.2:
   version "4.2.2"

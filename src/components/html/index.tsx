@@ -16,6 +16,7 @@ export class Html extends React.Component<HtmlProps> {
             styles = [],
             children,
          } = this.props;
+
         return (
             <html lang="en">
                 <head>
@@ -24,6 +25,7 @@ export class Html extends React.Component<HtmlProps> {
                     <title>{title}</title>
                     <meta name="description" content={description} />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <base href="/" />
                     {scripts.map(script => (
                         <link key={script} rel="preload" href={script} as="script" />
                     ))}
