@@ -1,11 +1,12 @@
 {
     "compilerOptions": {
         "target": "es5",
+        // "module": "esnext",
         "module": "commonjs",
         "typeRoots": [
             "node_modules/@types"
         ],
-        "outDir": "dist",
+        "outDir": "./build/dist",
         "lib": [
             "esnext",
             "dom"
@@ -17,8 +18,9 @@
         "noImplicitAny": true,
         "sourceMap": true,
         "skipLibCheck": true,
-        "declaration": true,
-        "jsx": "react"
+        "jsx": "react",
+        // "moduleResolution": "node",
+        "noUnusedLocals": true
     },
     "exclude": [
         "node_modules",

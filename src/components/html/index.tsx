@@ -1,3 +1,4 @@
+// tslint:disable:max-line-length
 import * as React from 'react';
 
 export interface HtmlProps {
@@ -5,6 +6,7 @@ export interface HtmlProps {
     description?: string;
     scripts: string[];
     styles: string[];
+    data?: any[];
 }
 
 export class Html extends React.Component<HtmlProps> {
@@ -13,8 +15,8 @@ export class Html extends React.Component<HtmlProps> {
             title = '',
             description = '',
             scripts = [],
-            styles = [],
             children,
+            data = [],
          } = this.props;
 
         return (
@@ -26,10 +28,9 @@ export class Html extends React.Component<HtmlProps> {
                     <meta name="description" content={description} />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
                     <base href="/" />
-                    {scripts.map(script => (
+                    {/* {scripts.map(script => (
                         <link key={script} rel="preload" href={script} as="script" />
-                    ))}
-                    {/* <link rel="apple-touch-icon" href="apple-touch-icon.png" /> */}
+                    ))} */}
                     {/* {styles.map(style => (
                         <style
                             key={style.id}
@@ -40,7 +41,7 @@ export class Html extends React.Component<HtmlProps> {
                 </head>
                 <body>
                     <div id="app">{children}</div>
-
+                    <script dangerouslySetInnerHTML={{ __html: `window.__INITIAL_STATE__ = ${JSON.stringify(data)};` }} />
                     {scripts.map(script => <script key={script} src={script} />)}
                 </body>
             </html>

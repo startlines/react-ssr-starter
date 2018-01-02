@@ -1,16 +1,21 @@
 import * as React from 'react';
-import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
-import { Link, Router } from 'react-router-dom';
+import { renderRoutes, RouteConfig } from 'react-router-config';
+import { Link } from 'react-router-dom';
 
-export interface AppProps extends RouteConfigComponentProps<any> { }
+export interface AppProps {
+    route: RouteConfig;
+    data: any[];
+}
 
 export class App extends React.Component<any> {
     render() {
-        const { route = {} } = this.props;
+        const { route = {}, data = [] } = this.props;
+        console.log(this.props);
+
+        const childData = data.slice(1);
+
         return (
             <div className="app-wrap">
-                app
-
                 <nav>
                     <ul>
                         <li>
@@ -21,7 +26,7 @@ export class App extends React.Component<any> {
                         </li>
                     </ul>
                 </nav>
-                {renderRoutes(route.routes)}
+                {renderRoutes(route.routes, { data: childData.length > 1 ? childData : childData[0] })}
             </div>
         );
     }

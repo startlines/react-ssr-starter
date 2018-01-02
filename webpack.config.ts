@@ -5,15 +5,25 @@ import * as webpack from 'webpack';
 import * as nodeExternals from 'webpack-node-externals';
 import { Env, Path } from './src/helper';
 
+export const PublicPath = Env.isDev ? '/' : '/';
+
 export const loaders: webpack.Rule[] = [
     {
         test: /.tsx?$/,
         use: ['awesome-typescript-loader'],
         exclude: ['node_modules'],
     },
-];
 
-export const PublicPath = Env.isDev ? '/public/' : 'https://www.cdn.com';
+    {
+        test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
+        use: {
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]',
+            },
+        },
+    },
+];
 
 const Base: webpack.Configuration = {
     context: Path.root(),
@@ -53,13 +63,14 @@ export const Client: webpack.Configuration = {
     output: {
         path: Path.root('build', 'public'),
         publicPath: PublicPath,
-        filename: Env.isDev ? '[name].js' : '[name].js',
-        chunkFilename: Env.isDev ? '[name].chunk.js' : '[name].chunk.js',
+        filename: Env.isDev ? '[name].js' : '[name].[hash:8].js',
+        chunkFilename: Env.isDev ? '[name].chunk.js' : '[name].chunk.[hash:8].js',
     },
 
     module: {
         rules: [
             ...loaders,
+
             {
                 test: /.scss$/,
                 use: extractTextPlugin.extract({
@@ -82,7 +93,7 @@ export const Client: webpack.Configuration = {
             filename: 'style.css',
         }),
 
-        new webpack.NoErrorsPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
 
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
@@ -142,6 +153,10 @@ export const Server: webpack.Configuration = {
 
     plugins: [
         ...Base.plugins || [],
+
+        new webpack.DefinePlugin({
+            $dirname: '__dirname',
+        }),
     ],
 
     stats: {
